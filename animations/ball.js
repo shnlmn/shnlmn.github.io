@@ -112,8 +112,7 @@ class pbAnimation extends Pegboard {
 
       ///// scale to_coord
       to_coord = [to_coord[0] * scaling, to_coord[1] * scaling];
-      // print("to coord", to_coord[0] * scaling, to_cooVrd[1] * scaling)
-      // print(this.location)
+
       ///// create a vector from the current location to the next node
       let travel_vector = animCanvas.createVector(
         to_coord[0] - this.location.x,
@@ -147,12 +146,5 @@ class pbAnimation extends Pegboard {
     image(animCanvas, 0, 0, this.display_w, this.display_h);
     image(animCanvas, 0, 0);
     image(active_pegs, 0, 0);
-  }
-  key_pressed(e) {
-    if (e.get_native().getKeyCode() == 8) {
-      this.text.pop();
-    } else {
-      this.text += e.get_key().upper();
-    }
   }
 }
