@@ -60,20 +60,47 @@ class Pegboard {
   }
 
   display_pegs() {
-	let cnvMask = createGraphics(this.board_w, this.board_h);
+    let cnvMask = createGraphics(this.board_w, this.board_h);
     cnvMask.fill(222, 184, 135);
-	cnvMask.rect(0, 0, this.board_w, this.board_h)
-	cnvMask.erase();
+    cnvMask.rect(0, 0, this.board_w, this.board_h);
+    cnvMask.erase();
     Object.entries(this.peg_coords).forEach((peg) => {
       //   print(peg);
       fill("#444");
       strokeWeight(0);
       cnvMask.circle(peg[1][0], peg[1][1], this.board_peg_size);
     });
-	cnvMask.noErase();
-	image(cnvMask, 0, 0);
+    cnvMask.noErase();
+    image(cnvMask, 0, 0);
   }
 
+//   display_pixels() {
+//     // circle(100, 100, 100)
+//     let pix_color = [];
+//     Object.entries(this.peg_coords).forEach((peg) => {
+//       pix_color.push(get(peg[1][0], peg[1][1]));
+//       //   print(pix_color);dd
+//     });
+//     // clear();
+//     for (
+//       let index = 0;
+//       index < Object.entries(this.peg_coords).length;
+//       index++
+//     ) {
+// 		    fill("#Fff")
+//       circle(
+//         this.peg_coords[index][0],
+//         this.peg_coords[index][1],
+//         this.board_peg_size
+//       );
+//       fill(pix_color[index]);
+//       circle(
+//         this.peg_coords[index][0],
+//         this.peg_coords[index][1],
+//         this.board_peg_size
+//       );
+//     }
+//   }
   //   get_status() {
   //     last_hall_active = this.hall_active;
   //     this.hall_active = Object.values(this.read_sensor_inputs()).filter(
@@ -89,7 +116,7 @@ class Pegboard {
   //     return (this.peg_D_state, this.peg_A_state);
   //   }
   get_peg_coords() {
-	return this.peg_coords;
+    return this.peg_coords;
   }
   get_D_state() {
     return this.peg_D_state;

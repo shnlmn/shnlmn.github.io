@@ -7,7 +7,6 @@ function setup() {
 
 
   createCanvas(pegboard.display_w, pegboard.display_h).position(...pegboard.canvas_position);
-
   pg = createGraphics(pegboard.display_w, pegboard.display_h);
   // pg.background(255, 0, 0);
   // pg.fill(0);
@@ -19,9 +18,11 @@ function setup() {
 }
 
 function draw() {
-  fill(155);
+  // fill(155);
+  noSmooth();
   this.animation.display();
   this.pegboard.display_pegs();
+  // this.pegboard.display_pixels();
 }
 
 function mouseClicked(e) {
