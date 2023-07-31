@@ -1,35 +1,22 @@
+let pegboard;
 function setup() {
-  animation = new pbAnimation();
-  pegboard = new Pegboard();
-  pixel_mask = null;
-
-  createCanvas(pegboard.display_w, pegboard.display_h).position(
-    ...pegboard.canvas_position
+  this.animation = new pbAnimation();
+  // Pegboard.preload(); // preload background image
+  this.pegboard = new Pegboard();
+  createCanvas(this.pegboard.display_w, this.pegboard.display_h).position(
+    ...this.pegboard.canvas_position
   );
-  let pegCnv = createCanvas(pegboard.display_w, pegboard.display_h).position(
-    ...pegboard.canvas_position
-  );
-  // new Canvas(animation.display_w, animation.display_h, "pixelated x4");
-  // pg = createGraphics(pegboard.display_w, pegboard.display_h);
-  // pg.background(255, 0, 0);
-  // pg.fill(0);
-  // pg.strokeWeight(0);
-  // for (let i = 0; i < Object.entries(animation.peg_coords).length; i++) {
-  //   pg.circle(animation.peg_coords[i][0], animation.peg_coords[i][1]);
-  // }
-  // pgMask = pg.loadPixels();
+  loadPixels();
 }
 
 function draw() {
-  // fill(155);
-  // noSmooth();
   this.animation.display();
-  // this.animation.paddles.draw();
-  // this.animation.balls.draw();
+  loadPixels();
   this.pegboard.display_pegs();
-  // this.pegboard.display_pixels();
+  print(getFPS())
 }
 
 function mouseClicked(e) {
+  // this.pegboard.mouseClicked(e);
   this.animation.mouseClicked(e);
 }
