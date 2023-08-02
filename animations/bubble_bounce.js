@@ -32,6 +32,7 @@ class pbAnimation extends Pegboard {
     this.target;
     this.random_ball_og = this.display_w / 2;
     this.random_ball_vel_x = 0;
+    this.margin = 100;
     this.set_target();
   }
   arrayRange(start, stop, step) {
@@ -57,9 +58,8 @@ class pbAnimation extends Pegboard {
   set_target() {
     this.target = new Sprite();
     this.target.d = this.board_peg_spacing * 4;
-    this.target.x = Math.random() * (this.display_w - 30) + 30;
-    this.target.y = Math.random() * (this.display_h / 2 - 30) + 30;
-    print(this.target.x, this.target.y);
+    this.target.x = Math.random() * (this.display_w - this.margin) + this.margin;
+    this.target.y = Math.random() * (this.display_h / 2 - this.margin) + this.margin;
     this.target.collider = "s";
     this.target.collides(this.balls, (target, ball) => {
       this.new_target(target, ball)
@@ -70,7 +70,7 @@ class pbAnimation extends Pegboard {
       target.remove();
       ball.remove();
       this.set_target();
-      this.random_ball_og = Math.random() * (this.display_w - 30) + 30;
+      this.random_ball_og = Math.random() * (this.display_w - this.margin) + this.margin;
       this.random_ball_vel_x = Math.random() * 5;
 
   }
@@ -135,14 +135,15 @@ class pbAnimation extends Pegboard {
             [this.pegs[j].x, this.pegs[j].y],
           ]);
           rope.collides(this.balls, (rope, ball) => {
-            const remap = this.remapToLogScale(
+            let remap = this.remapToLogScale(
               d,
               this.board_peg_spacing * 2,
-              this.board_peg_spacing * 10,
+              this.board_peg_spacing * 15,
               0.01,
               10
             );
-            if (typeof remap == "NaN"){
+            print(remap)
+            if (isNaN(remap) || remap > 1000){
               remap = 1;
             }
             ball.addSpeed(remap);
