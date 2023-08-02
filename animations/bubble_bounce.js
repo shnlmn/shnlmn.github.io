@@ -57,10 +57,14 @@ class pbAnimation extends Pegboard {
   }
   set_target() {
     this.target = new Sprite();
-    this.target.d = this.board_peg_spacing * 4;
+    this.target.d = this.board_peg_spacing * 6;
     this.target.x = Math.random() * (this.display_w - this.margin) + this.margin;
     this.target.y = Math.random() * (this.display_h / 2 - this.margin) + this.margin;
     this.target.collider = "s";
+    this.target.stroke = "red";
+    // this.target.shapeColor= (100, 0)
+    this.target.shapeColor.setAlpha(0)
+    this.target.strokeWeight = 12;
     this.target.collides(this.balls, (target, ball) => {
       this.new_target(target, ball)
     });
