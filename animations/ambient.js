@@ -10,10 +10,11 @@ class pbAnimation extends Analog_pegs {
     this.thumb_h = 80;
     this.video_list = [
       "assets/videos/video1.mp4",
-      "assets/videos/video2.mp4",
-      "assets/videos/video3.mp4",
-      "assets/videos/video4.mp4",
+      // "assets/videos/video2.mp4",
+      // "assets/videos/video3.mp4",
+      // "assets/videos/video4.mp4",
       "assets/videos/video5.mp4",
+      "assets/videos/sailboatmovie.mp4",
       "assets/videos/GalaxyMarble.mp4",
       "assets/videos/color_refraction.mkv",
       "assets/videos/JellyNebula.mp4",

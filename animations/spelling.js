@@ -23,8 +23,9 @@ class pbAnimation extends Analog_pegs {
       let display_letter = createButton(this.alphabet[key]);
       display_letter.position(key * 33 + 55, this.display_h + 20);
       display_letter.size(30, 50);
+      display_letter.addClass('inactive');
       display_letter.mousePressed(() => this.updateActivePeg(key));
-      display_letter.style("background-color:white; border-style:hidden");
+      // display_letter.style("background-color:white; border-style:hidden");
     }
     this.letter_sprites = new Group();
     this.preload(() => {

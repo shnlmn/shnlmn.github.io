@@ -38,11 +38,16 @@ class Analog_pegs extends Pegboard {
     const buttons = document.querySelectorAll("button");
 
     buttons.forEach((button) => {
-      button.style.backgroundColor = "white";
-      button.style.borderStyle = "hidden";
+      // button.style.backgroundColor = "white";
+      // button.className("active");
+      // print(button.class, button)
+      $(button).className("active");
+      // button.style.borderStyle = "hidden";
+      print(button.innerHTML)
       if (button.innerHTML === this.alphabet[key]) {
-        button.addEventListener("click", function () {
-          button.style.backgroundColor = "orange";
+        button.addEventListener("click", function (event) {
+          event.target.className = "active";
+          print("click", event.target.className)
         });
       }
     });
