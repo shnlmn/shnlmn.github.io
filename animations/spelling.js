@@ -1,29 +1,32 @@
-class pbAnimation extends Analog_pegs {
+class pbAnimation extends Pegboard {
   constructor() {
     super();
     this.active_D_count = 0;
     this.active_A_count = 0;
-    this.words = [
-      "apple",
-      "tiger",
-      "house",
-      "baseball",
-      "kitchen",
-      "running",
-    ];
+    this.words = ["apple", "tiger", "house", "baseball", "kitchen", "running"];
     this.alphabet_sprites;
     this.jumble_sprites = new Group();
     this.current_word = this.words[0];
     this.correct_answer = false;
     this.frame = 0;
     this.animation_done = true;
+    this.alphabet = [..."abcdefghijklmnopqrstuvwxyz"];
+    this.numbers = [..."0123456789"];
+    this.animals = ["cat", "dog", "horse", "elephant", "mouse"];
+    this.plants = ["tree", "flower", "bush", "mushroom"];
+    this.key_width = this.display_w;
+    this.key_height = 100;
+    this.active_peg;
 
     ///// SETUP ALPHABET SPRITES AND BUTTONS
     for (const key in this.alphabet) {
       let display_letter = createButton(this.alphabet[key]);
-      display_letter.position(key * 33 + 55, this.display_h + 20);
+      display_letter.position(
+        key * 33 + (windowWidth / 2 - this.display_w / 2),
+        this.display_h + 10
+      );
       display_letter.size(30, 50);
-      display_letter.addClass('inactive');
+      display_letter.addClass("inactive");
       display_letter.mousePressed(() => this.updateActivePeg(key));
       // display_letter.style("background-color:white; border-style:hidden");
     }
@@ -70,6 +73,20 @@ class pbAnimation extends Analog_pegs {
     return letter_sprite;
   }
 
+  updateActivePeg(key) {
+    this.active_peg = this.alphabet[key];
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach((button) => {
+      // print(button.innerHTML);
+      button.className = "inactive";
+      if (button.innerHTML === this.alphabet[key]) {
+        button.addEventListener("click", function (event) {
+          event.target.className = "active";
+          print("click", event.target.className);
+        });
+      }
+    });
+  }
   load_spelling_sprites(letter, addr) {
     // print("load", this.alphabet_sprites.width);
     let letter_sprite = this.create_letter_sprite(letter);
@@ -167,9 +184,9 @@ class pbAnimation extends Analog_pegs {
     this.frame++;
   }
 
-  mouseClicked(e) {
+  mouseClicked() {
     let peg_D_obj, peg_A_obj;
-    [peg_D_obj, peg_A_obj] = this.toggle_peg(e);
+    [peg_D_obj, peg_A_obj] = this.toggle_peg();
     if (peg_A_obj) {
       let new_peg = true;
       for (let index = 0; index < this.inserted_pegs.length; index++) {

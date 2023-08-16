@@ -1,5 +1,33 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+}
+/* center all components in body */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+  background-color: #131212;
+}
+/* center all canvas in body */
+
+canvas {
+  top: 10px;
+
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+
 button {
-  background-color: #444;
+  background-color: #b5a861;
   color: #fff;
   border: none;
   /* padding: 10px 20px; */
@@ -7,11 +35,16 @@ button {
   cursor: pointer;
   /* border-radius: 5px; */
 }
-.active {
-  background-color: #444;
+button:hover {
+  background-color: #c5db35;
   color: #fff;
 }
+
+.active {
+  background-color: #c5db35;
+  color: #000000;
+}
 .inactive {
-  background-color: #131212;
-  color: #444;
+  background-color: #484646;
+  color: #000000;
 }
